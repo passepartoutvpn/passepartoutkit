@@ -4,9 +4,8 @@ on:
   push:
     branches:
       - "master"
-      - "ci/automate-release"
-    #paths:
-    #  - ".version"
+    paths:
+      - ".version"
 
 jobs:
   run_tests:
@@ -25,7 +24,7 @@ jobs:
           git clone https://git:${{ secrets.ACCESS_TOKEN }}@$SRC_URL src
       - uses: passepartoutvpn/action-release-binary-package@master
         with:
-          script: "src/scripts/create-framework.sh macosx"
+          script: "src/scripts/create-framework.sh"
           framework: "PassepartoutKit.xcframework"
           gpg-key: ${{ secrets.GPG_KEY }}
           gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
