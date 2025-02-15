@@ -26,7 +26,7 @@ jobs:
       - uses: passepartoutvpn/action-release-binary-package@master
         with:
           script: "src/scripts/create-framework.sh macosx"
-          framework: "src/build/PassepartoutKit.xcframework"
+          framework: "PassepartoutKit.xcframework"
           gpg-key: ${{ secrets.GPG_KEY }}
           gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
           prerelease: true
