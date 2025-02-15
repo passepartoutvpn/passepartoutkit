@@ -27,3 +27,4 @@ jobs:
           framework: "src/build/PassepartoutKit.xcframework"
           gpg-key: ${{ secrets.GPG_KEY }}
           gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
+          prerelease: true
