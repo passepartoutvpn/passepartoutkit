@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - "master"
+    paths:
+      - ".version"
+
+jobs:
+  run_tests:
+    name: Publish release
+    runs-on: macos-15
+    timeout-minutes: 10
+    steps:
+      - uses: passepartoutvpn/action-prepare-xcode-build@master
+        with:
+          access_token: ${{ secrets.ACCESS_TOKEN }}
+      - name: "Fetch source"
+        env:
+          SRC_URL: "github.com/passepartoutvpn/passepartoutkit-source"
+        run: |
+          git clone https://git:${{ secrets.ACCESS_TOKEN }}@$SRC_URL src
+      - uses: passepartoutvpn/action-release-binary-package@master
+        with:
+          script: "src/scripts/create-framework.sh"
+          framework: "src/build/PassepartoutKit.xcframework"
+          gpg-key: ${{ secrets.GPG_KEY }}
+          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
