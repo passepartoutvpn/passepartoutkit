@@ -14,9 +14,10 @@ jobs:
     runs-on: macos-15
     timeout-minutes: 10
     steps:
-      - uses: passepartoutvpn/action-prepare-xcode-build@master
+      - uses: actions/checkout@v4
+      - uses: maxim-lobanov/setup-xcode@v1
         with:
-          access_token: ${{ secrets.ACCESS_TOKEN }}
+          xcode-version: "16"
       - name: "Fetch source"
         env:
           SRC_URL: "github.com/passepartoutvpn/passepartoutkit-source"
